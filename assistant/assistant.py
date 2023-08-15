@@ -22,7 +22,7 @@
 
 import time, dotenv
 from datetime import datetime
-from pyrogram import Client, Message, enums
+from pyrogram import Client, enums
 from pyrogram import __version__
 from pyrogram.raw.all import layer
 from pyrogram.types import Message
