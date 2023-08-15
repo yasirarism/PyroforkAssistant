@@ -519,7 +519,6 @@ PERMISSIONS = {
     -1001387666944: ChatPermissions(  # Inn
         can_send_messages=True,
         can_send_media_messages=True,
-        can_use_inline_bots=True
     ),
     -1001221450384: ChatPermissions(  # Lounge
         can_send_messages=True,
@@ -527,7 +526,6 @@ PERMISSIONS = {
         can_send_stickers=True,
         can_send_animations=True,
         can_send_games=True,
-        can_use_inline_bots=True,
         can_send_polls=True
     ),
     -1001355792138: ChatPermissions(  # Italian Group
@@ -536,7 +534,6 @@ PERMISSIONS = {
         can_send_stickers=True,
         can_send_animations=True,
         can_send_games=True,
-        can_use_inline_bots=True
     )
 }
 
@@ -597,7 +594,6 @@ async def cb_query(bot: Assistant, query: CallbackQuery):
                 can_send_stickers=True,
                 can_send_animations=True,
                 can_send_games=True,
-                can_use_inline_bots=True,
                 can_add_web_page_previews=True,
                 can_send_polls=True,
                 can_change_info=True,
