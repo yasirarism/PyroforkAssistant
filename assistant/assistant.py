@@ -58,12 +58,12 @@ class Assistant(Client):
         await super().stop()
         print("Pyrogram Assistant stopped. Bye.")
 
-    def is_admin(self, message: Message) -> bool:
+    async def is_admin(self, message: Message) -> bool:
         user_id = message.from_user.id
         chat_id = message.chat.id
 
         admins = {}
-        async for admin in self.iter_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
+        async for admin in self.get_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
             admins.add(admin.user.id)
 
         return user_id in admins[chat_id]

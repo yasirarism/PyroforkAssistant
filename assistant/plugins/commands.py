@@ -53,7 +53,7 @@ async def reply_and_delete(message: Message, text: str):
 def admins_only(func):
     @wraps(func)
     async def decorator(bot: Assistant, message: Message):
-        if bot.is_admin(message):
+        if await bot.is_admin(message):
             await func(bot, message)
 
         await message.delete()
@@ -389,7 +389,7 @@ async def delete(bot: Assistant, message: Message):
         return
 
     # Don't delete admins messages
-    if bot.is_admin(reply):
+    if await bot.is_admin(reply):
         m = await message.reply("Sorry, I don't delete administrators' messages.")
         await asyncio.sleep(5)
         await m.delete()
@@ -441,7 +441,7 @@ async def ban(bot: Assistant, message: Message):
         return
 
     # Don't ban admins
-    if bot.is_admin(reply):
+    if await bot.is_admin(reply):
         m = await message.reply("Sorry, I don't ban administrators")
         await asyncio.sleep(5)
         await m.delete()
@@ -470,7 +470,7 @@ async def kick(bot: Assistant, message: Message):
         return
 
     # Don't kick admins
-    if bot.is_admin(reply):
+    if await bot.is_admin(reply):
         m = await message.reply("Sorry, I don't kick administrators")
         await asyncio.sleep(5)
         await m.delete()
@@ -616,7 +616,7 @@ async def cb_query(bot: Assistant, query: CallbackQuery):
             from_user=query.from_user,
             chat=query.message.chat
         )
-        if query.from_user.id == user_id or bot.is_admin(dummy):
+        if query.from_user.id == user_id or await bot.is_admin(dummy):
             await query.answer()
             await query.message.delete()
         else:
