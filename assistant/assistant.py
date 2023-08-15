@@ -56,7 +56,7 @@ class Assistant(Client):
 
     async def stop(self, *args):
         await super().stop()
-        print("Pyrogram Assistant stopped. Bye.")
+        print("PyroFork Assistant stopped. Bye.")
 
     async def is_admin(self, message: Message) -> bool:
         user_id = message.from_user.id
