@@ -20,7 +20,7 @@
 #  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #  SOFTWARE.
 
-import time, dotenv
+import time, dotenv, os
 from datetime import datetime
 from pyrogram import Client, enums
 from pyrogram import __version__
@@ -37,10 +37,12 @@ class Assistant(Client):
         name = self.__class__.__name__.lower()
         super().__init__(
             name,
+            api_id=os.environ.get("API_ID"),
+            api_hash=os.environ.get("API_HASH"),
+            bot_token=os.environ.get("BOT_TOKEN"),
             workers=16,
             plugins=dict(
-                root=f"{name}.plugins",
-                exclude=["welcome"]
+                root=f"{name}.plugins"
             ),
             sleep_threshold=180
         )
