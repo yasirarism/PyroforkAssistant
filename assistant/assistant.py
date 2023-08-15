@@ -35,9 +35,6 @@ class Assistant(Client):
 
     def __init__(self):
         name = self.__class__.__name__.lower()
-
-        self.config.read(f"{name}.ini")
-
         super().__init__(
             name,
             workers=16,
