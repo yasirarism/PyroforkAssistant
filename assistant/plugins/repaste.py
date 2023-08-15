@@ -29,12 +29,11 @@ ENDPOINT = "https://nekobin.com/api/documents"
 ANSWER = "**Please use Nekobin for pastes.**\n"
 TIMEOUT = 3
 
-CHAT = filters.chat("PyrogramChat")
 REGEX = filters.regex(
     r"(https?://)?(www\.)?(?P<service>(p|h)asteb(\.?in|in\.com)|del\.dog|haste.thevillage.chat)/(raw/)?(?P<tag>\w+)"
     # https://regex101.com/r/cl5iGU/3
 )
-FILTER = REGEX & CHAT & ~filters.edited
+FILTER = REGEX
 
 
 async def get_and_post(paste_url: str):

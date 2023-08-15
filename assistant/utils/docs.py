@@ -49,7 +49,7 @@ class Result:
         return re.sub(r"([a-z0-9])([A-Z])", r"\1_\2", s).lower()
 
     class Method:
-        DOCS = "https://docs.pyrogram.org/api/methods/{}"
+        DOCS = "https://pyrofork.mayuri.my.id/api/methods/{}"
         THUMB = "https://i.imgur.com/S5lY8fy.png"
 
         def __new__(cls, item):
@@ -59,7 +59,7 @@ class Result:
                 title=f"{item.__name__}",
                 description="Method - " + short,
                 input_message_content=InputTextMessageContent(
-                    f"{emoji.CLOSED_BOOK} **Pyrogram Docs**\n\n"
+                    f"{emoji.CLOSED_BOOK} **PyroFork Docs**\n\n"
                     f"[{item.__name__}]({cls.DOCS.format(item.__name__)}) - Method\n\n"
                     f"`{full}`\n",
                     disable_web_page_preview=True,
@@ -68,7 +68,7 @@ class Result:
             )
 
     class Decorator:
-        DOCS = "https://docs.pyrogram.org/api/decorators#pyrogram.Client.{}"
+        DOCS = "https://pyrofork.mayuri.my.id/api/decorators#pyrogram.Client.{}"
         THUMB = "https://i.imgur.com/xp3jld1.png"
 
         def __new__(cls, item):
@@ -78,7 +78,7 @@ class Result:
                 title=f"{item.__name__}",
                 description="Decorator - " + short,
                 input_message_content=InputTextMessageContent(
-                    f"{emoji.ARTIST_PALETTE} **Pyrogram Docs**\n\n"
+                    f"{emoji.ARTIST_PALETTE} **PyroFork Docs**\n\n"
                     f"[{item.__name__}]({cls.DOCS.format(item.__name__)}) - Decorator\n\n"
                     f"`{full}`\n",
                     disable_web_page_preview=True,
@@ -87,7 +87,7 @@ class Result:
             )
 
     class Type:
-        DOCS = "https://docs.pyrogram.org/api/types/{}"
+        DOCS = "https://pyrofork.mayuri.my.id/api/types/{}"
         THUMB = "https://i.imgur.com/dw1lLBX.png"
 
         def __new__(cls, item):
@@ -97,7 +97,7 @@ class Result:
                 title=f"{item.__name__}",
                 description="Type - " + short,
                 input_message_content=InputTextMessageContent(
-                    f"{emoji.GREEN_BOOK} **Pyrogram Docs**\n\n"
+                    f"{emoji.GREEN_BOOK} **PyroFork Docs**\n\n"
                     f"[{item.__name__}]({cls.DOCS.format(item.__name__)}) - Type\n\n"
                     f"`{full}`",
                     disable_web_page_preview=True,
@@ -106,7 +106,7 @@ class Result:
             )
 
     class Filter:
-        DOCS = "https://docs.pyrogram.org/api/filters#pyrogram.filters.{}"
+        DOCS = "https://pyrofork.mayuri.my.id/api/filters#pyrogram.filters.{}"
         THUMB = "https://i.imgur.com/YRe6cKU.png"
 
         def __new__(cls, item):
@@ -114,7 +114,7 @@ class Result:
                 title=f"{item.__class__.__name__}",
                 description=f"Filter - {item.__class__.__name__}",
                 input_message_content=InputTextMessageContent(
-                    f"{emoji.CONTROL_KNOBS} **Pyrogram Docs**\n\n"
+                    f"{emoji.CONTROL_KNOBS} **PyroFork Docs**\n\n"
                     f"[{item.__class__.__name__}]({cls.DOCS.format(item.__class__.__name__.lower())}) - Filter",
                     disable_web_page_preview=True,
                 ),
@@ -122,7 +122,7 @@ class Result:
             )
 
     class BoundMethod:
-        DOCS = "https://docs.pyrogram.org/api/bound-methods/{}.{}"
+        DOCS = "https://pyrofork.mayuri.my.id/api/bound-methods/{}.{}"
         THUMB = "https://i.imgur.com/GxFuuks.png"
 
         def __new__(cls, item):
@@ -132,7 +132,7 @@ class Result:
                 title=f"{item.__qualname__}",
                 description=f'Bound Method "{b}" of {a}',
                 input_message_content=InputTextMessageContent(
-                    f"{emoji.LEDGER} **Pyrogram Docs**\n\n"
+                    f"{emoji.LEDGER} **PyroFork Docs**\n\n"
                     f"[{item.__qualname__}]({cls.DOCS.format(a, b)}) - Bound Method",
                     disable_web_page_preview=True,
                 ),
@@ -140,7 +140,7 @@ class Result:
             )
 
     class RawMethod:
-        DOCS = "https://docs.pyrogram.org/telegram/functions/{}"
+        DOCS = "https://pyrofork.mayuri.my.id/telegram/functions/{}"
         THUMB = "https://i.imgur.com/NY4uasQ.png"
 
         def __new__(cls, item):
@@ -151,7 +151,7 @@ class Result:
                 title=f"{item[0]}",
                 description=f"Raw Method - {constructor_id}\nSchema: Layer {layer}",
                 input_message_content=InputTextMessageContent(
-                    f"{emoji.BLUE_BOOK} **Pyrogram Docs**\n\n"
+                    f"{emoji.BLUE_BOOK} **PyroFork Docs**\n\n"
                     f"[{item[0]}]({path}) - Raw Method\n\n"
                     f"`ID`: **{constructor_id}**\n"
                     f"`Schema`: **Layer {layer}**",
@@ -161,7 +161,7 @@ class Result:
             )
 
     class RawType:
-        DOCS = "https://docs.pyrogram.org/telegram/types/{}"
+        DOCS = "https://pyrofork.mayuri.my.id/telegram/types/{}"
         THUMB = "https://i.imgur.com/b33rM21.png"
 
         def __new__(cls, item):
@@ -172,7 +172,7 @@ class Result:
                 title=f"{item[0]}",
                 description=f"Raw Type - {constructor_id}\nSchema: Layer {layer}",
                 input_message_content=InputTextMessageContent(
-                    f"{emoji.ORANGE_BOOK} **Pyrogram Docs**\n\n"
+                    f"{emoji.ORANGE_BOOK} **PyroFork Docs**\n\n"
                     f"[{item[0]}]({path}) - Raw Type\n\n"
                     f"`ID`: **{constructor_id}**\n"
                     f"`Schema`: **Layer {layer}**",
@@ -276,30 +276,30 @@ RED_HEART_THUMB = "https://i.imgur.com/66FVFXz.png"
 SCROLL_THUMB = "https://i.imgur.com/L1u0VlX.png"
 
 HELP = (
-    f"{emoji.ROBOT} **Pyrogram Assistant**\n\n"
-    f"You can use this bot in inline mode to search for Pyrogram methods, types and other resources from "
-    f"https://docs.pyrogram.org.\n\n"
+    f"{emoji.ROBOT} **PyroFork Assistant**\n\n"
+    f"You can use this bot in inline mode to search for PyroFork methods, types and other resources from "
+    f"https://pyrofork.mayuri.my.id.\n\n"
 
     f"**__Search__**\n"
-    f"`@pyrogrambot <terms>` – Pyrogram API\n"
-    f"`@pyrogrambot !r <terms>` – Telegram Raw API\n\n"
+    f"`@PyroForkBot <terms>` – Pyrogram API\n"
+    f"`@PyroForkBot !r <terms>` – Telegram Raw API\n\n"
 
     f"**__List__**\n"
-    f"`@pyrogrambot !m` – Methods\n"
-    f"`@pyrogrambot !t` – Types\n"
-    f"`@pyrogrambot !f` – Filters\n"
-    f"`@pyrogrambot !b` – Bound Methods\n"
-    f"`@pyrogrambot !d` – Decorators\n"
-    f"`@pyrogrambot !rm` – Raw Methods\n"
-    f"`@pyrogrambot !rt` – Raw Types\n\n"
+    f"`@PyroForkBot !m` – Methods\n"
+    f"`@PyroForkBot !t` – Types\n"
+    f"`@PyroForkBot !f` – Filters\n"
+    f"`@PyroForkBot !b` – Bound Methods\n"
+    f"`@PyroForkBot !d` – Decorators\n"
+    f"`@PyroForkBot !rm` – Raw Methods\n"
+    f"`@PyroForkBot !rt` – Raw Types\n\n"
 )
 
 DEFAULT_RESULTS = [
     InlineQueryResultArticle(
-        title="About Pyrogram",
+        title="About PyroFork",
         input_message_content=InputTextMessageContent(
-            f"{emoji.FIRE} **Pyrogram**\n\n"
-            f"Pyrogram is an elegant, easy-to-use Telegram client library and framework written from the ground up in "
+            f"{emoji.FIRE} **PyroFork**\n\n"
+            f"PyroFork is a fork of Pyrogram with an elegant, easy-to-use Telegram client library and framework written from the ground up in "
             f"Python and C. It enables you to easily create custom apps using both user and bot identities (bot API "
             f"alternative) via the MTProto API.",
             disable_web_page_preview=True,
@@ -311,7 +311,7 @@ DEFAULT_RESULTS = [
                 ],
                 [
                     InlineKeyboardButton(f"{emoji.CARD_INDEX_DIVIDERS} GitHub", url="https://github.com/pyrogram"),
-                    InlineKeyboardButton(f"{emoji.OPEN_BOOK} Docs", url="https://docs.pyrogram.org")
+                    InlineKeyboardButton(f"{emoji.OPEN_BOOK} Docs", url="https://pyrofork.mayuri.my.id")
                 ]
             ]
         ),
@@ -338,7 +338,7 @@ DEFAULT_RESULTS = [
         title="Quick Start",
         input_message_content=InputTextMessageContent(
             f"{emoji.ROCKET} **Pyrogram Docs**\n\n"
-            f"[Quick Start](https://docs.pyrogram.org/intro/quickstart) - Introduction\n\n"
+            f"[Quick Start](https://pyrofork.mayuri.my.id/intro/quickstart) - Introduction\n\n"
             f"`Quick overview to get you started as fast as possible`",
             disable_web_page_preview=True,
         ),

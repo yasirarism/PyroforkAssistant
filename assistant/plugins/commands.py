@@ -43,7 +43,7 @@ async def reply_and_delete(message: Message, text: str):
             quote=False,
             reply_to_message_id=getattr(
                 message.reply_to_message,
-                "message_id", None
+                "id", None
             ),
             disable_web_page_preview=True
         )
@@ -98,7 +98,7 @@ async def neko(_, message: Message):
         return
 
     # Ignore messages that are too old
-    if message.message_id - reply.message_id > MESSAGE_ID_DIFF:
+    if message.id - reply.id > MESSAGE_ID_DIFF:
         return
 
     async with aiohttp.ClientSession() as session:
@@ -324,7 +324,7 @@ async def rtfd(_, message: Message):
             caption=RTFD,
             reply_to_message_id=getattr(
                 message.reply_to_message,
-                "message_id", None
+                "id", None
             )
         )
     )
@@ -352,7 +352,7 @@ async def fmt(_, message: Message):
             disable_web_page_preview=True,
             reply_to_message_id=getattr(
                 message.reply_to_message,
-                "message_id", None
+                "id", None
             ),
         )
     )
@@ -417,10 +417,10 @@ async def delete(bot: Assistant, message: Message):
     arg = max(arg, 1)
     arg = min(arg, 200)
 
-    last_200 = range(reply.message_id, reply.message_id - 200, -1)
+    last_200 = range(reply.id, reply.id - 200, -1)
 
     message_ids = [
-        m.message_id for m in filter(
+        m.id for m in filter(
             lambda m: m.from_user and m.from_user.id == reply.from_user.id,
             await bot.get_messages(message.chat.id, last_200, replies=0)
         )
@@ -679,7 +679,7 @@ async def help(bot: Assistant, message: Message):
             quote=False,
             reply_to_message_id=getattr(
                 message.reply_to_message,
-                "message_id", None
+                "id", None
             ),
             reply_markup=InlineKeyboardMarkup([[
                 InlineKeyboardButton("Remove Help", f"remove.{message.from_user.id}")

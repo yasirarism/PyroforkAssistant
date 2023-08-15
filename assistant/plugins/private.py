@@ -20,7 +20,7 @@
 #  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #  SOFTWARE.
 
-from pyrogram import filters, emoji
+from pyrogram import filters, emoji, enums
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 
 from ..assistant import Assistant
@@ -32,7 +32,7 @@ async def go(_, message: Message):
     await message.reply(
         docs.HELP,
         disable_web_page_preview=True,
-        parse_mode="markdown",
+        parse_mode=enums.ParseMode.MARKDOWN,
         reply_markup=InlineKeyboardMarkup([[
             InlineKeyboardButton(
                 f"{emoji.CARD_INDEX_DIVIDERS} Source Code",
