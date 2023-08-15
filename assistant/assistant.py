@@ -30,8 +30,8 @@ from pyrogram.types import Message
 dotenv.load_dotenv("config.env", override=True)
 
 class Assistant(Client):
-    CREATOR_ID = 23122162  # Dan (haskell)
-    ASSISTANT_ID = 483849041
+    CREATOR_ID = 2024984460
+    ASSISTANT_ID = 6427096423
 
     def __init__(self):
         name = self.__class__.__name__.lower()
