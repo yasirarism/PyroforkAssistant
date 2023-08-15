@@ -45,11 +45,6 @@ class Assistant(Client):
             sleep_threshold=180
         )
 
-        self.admins = {
-            chat: {Assistant.CREATOR_ID}
-            for chat in Assistant.chats
-        }
-
         self.uptime_reference = time.monotonic_ns()
         self.start_datetime = datetime.utcnow()
 
@@ -59,11 +54,6 @@ class Assistant(Client):
         me = await self.get_me()
         print(f"Assistant for Pyrofork v{__version__} (Layer {layer}) started on @{me.username}. Hi.")
 
-        # Fetch current admins from chats
-        for chat, admins in self.admins.items():
-            async for admin in self.iter_chat_members(chat, filter=enums.ChatMembersFilter.ADMINISTRATORS):
-                admins.add(admin.user.id)
-
     async def stop(self, *args):
         await super().stop()
         print("Pyrogram Assistant stopped. Bye.")
@@ -72,4 +62,8 @@ class Assistant(Client):
         user_id = message.from_user.id
         chat_id = message.chat.id
 
-        return user_id in self.admins[chat_id]
+        admins = {}
+        async for admin in self.iter_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
+            admins.add(admin.user.id)
+
+        return user_id in admins[chat_id]
