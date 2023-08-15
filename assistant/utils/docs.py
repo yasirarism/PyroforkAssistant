@@ -22,7 +22,7 @@
 
 import re
 
-from pyrogram import filters, emoji, types
+from pyrogram import filters, emoji, types, enums
 from pyrogram.types import (InlineQueryResultArticle, InputTextMessageContent, InlineKeyboardMarkup,
                             InlineKeyboardButton, Object)
 from pyrogram.raw import types as raw_types, functions as raw_methods
@@ -320,7 +320,7 @@ DEFAULT_RESULTS = [
     ),
     InlineQueryResultArticle(
         title="About this Bot",
-        input_message_content=InputTextMessageContent(HELP, disable_web_page_preview=True, parse_mode="markdown"),
+        input_message_content=InputTextMessageContent(HELP, disable_web_page_preview=True, parse_mode=enums.ParseMode.MARKDOWN),
         reply_markup=InlineKeyboardMarkup([[
             InlineKeyboardButton(
                 f"{emoji.CARD_INDEX_DIVIDERS} Source Code",
