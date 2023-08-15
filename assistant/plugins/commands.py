@@ -523,17 +523,13 @@ PERMISSIONS = {
     -1001221450384: ChatPermissions(  # Lounge
         can_send_messages=True,
         can_send_media_messages=True,
-        can_send_stickers=True,
-        can_send_animations=True,
-        can_send_games=True,
+        can_send_other_messages=True,
         can_send_polls=True
     ),
     -1001355792138: ChatPermissions(  # Italian Group
         can_send_messages=True,
         can_send_media_messages=True,
-        can_send_stickers=True,
-        can_send_animations=True,
-        can_send_games=True,
+        can_send_other_messages=True,
     )
 }
 
@@ -590,10 +586,7 @@ async def cb_query(bot: Assistant, query: CallbackQuery):
             user_id,
             ChatPermissions(
                 can_send_messages=True,
-                can_send_media_messages=True,
-                can_send_stickers=True,
-                can_send_animations=True,
-                can_send_games=True,
+                can_send_other_messages=True,
                 can_add_web_page_previews=True,
                 can_send_polls=True,
                 can_change_info=True,
