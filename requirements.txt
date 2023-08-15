@@ -1,4 +1,4 @@
-PyroFork=2.2.9
+PyroFork==2.2.9
 tgcrypto
 aiohttp
 num2words
