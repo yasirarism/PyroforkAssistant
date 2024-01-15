@@ -574,8 +574,6 @@ async def cb_query(bot: Assistant, query: CallbackQuery):
     match = query.matches[0]
     action = match.group("action")
     user_id = int(match.group("uid"))
-    text = query.message.text
-
     if action == "unban":
         if query.from_user.id != Assistant.CREATOR_ID:
             await query.answer("Only Dan can pardon banned users", show_alert=True)
@@ -594,6 +592,8 @@ async def cb_query(bot: Assistant, query: CallbackQuery):
                 can_pin_messages=True
             )
         )
+
+        text = query.message.text
 
         await query.edit_message_text(f"~~{text.markdown}~~\n\nPardoned")
 

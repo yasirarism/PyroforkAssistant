@@ -57,7 +57,7 @@ class Result:
 
             return InlineQueryResultArticle(
                 title=f"{item.__name__}",
-                description="Method - " + short,
+                description=f"Method - {short}",
                 input_message_content=InputTextMessageContent(
                     f"{emoji.CLOSED_BOOK} **PyroFork Docs**\n\n"
                     f"[{item.__name__}]({cls.DOCS.format(item.__name__)}) - Method\n\n"
@@ -76,7 +76,7 @@ class Result:
 
             return InlineQueryResultArticle(
                 title=f"{item.__name__}",
-                description="Decorator - " + short,
+                description=f"Decorator - {short}",
                 input_message_content=InputTextMessageContent(
                     f"{emoji.ARTIST_PALETTE} **PyroFork Docs**\n\n"
                     f"[{item.__name__}]({cls.DOCS.format(item.__name__)}) - Decorator\n\n"
@@ -95,7 +95,7 @@ class Result:
 
             return InlineQueryResultArticle(
                 title=f"{item.__name__}",
-                description="Type - " + short,
+                description=f"Type - {short}",
                 input_message_content=InputTextMessageContent(
                     f"{emoji.GREEN_BOOK} **PyroFork Docs**\n\n"
                     f"[{item.__name__}]({cls.DOCS.format(item.__name__)}) - Type\n\n"
@@ -227,14 +227,23 @@ for a in dir(types):
     try:
         c = getattr(types, a)
         if issubclass(c, Object):
-            for m in dir(c):
+            BOUND_METHODS.extend(
+                (f"{a}.{m}", Result.BoundMethod(getattr(c, m)))
+                for m in dir(c)
                 if (
                     not m.startswith("_")
                     and callable(getattr(c, m))
-                    and m not in ["default", "read", "write", "with_traceback", "continue_propagation",
-                                  "stop_propagation"]
-                ):
-                    BOUND_METHODS.append((f"{a}.{m}", Result.BoundMethod(getattr(c, m))))
+                    and m
+                    not in [
+                        "default",
+                        "read",
+                        "write",
+                        "with_traceback",
+                        "continue_propagation",
+                        "stop_propagation",
+                    ]
+                )
+            )
     except TypeError:
         pass
 
@@ -245,9 +254,18 @@ for i in filter(lambda x: not x.startswith("_"), dir(raw_methods)):
         RAW_METHODS.append((i, Result.RawMethod((i, getattr(raw_methods, i)))))
     else:
         if "Int" not in dir(getattr(raw_methods, i)):
-            for j in filter(lambda x: not x.startswith("_") and x[0].isupper(), dir(getattr(raw_methods, i))):
-                RAW_METHODS.append((f"{i}.{j}", Result.RawMethod((f"{i}.{j}", getattr(getattr(raw_methods, i), j)))))
-
+            RAW_METHODS.extend(
+                (
+                    f"{i}.{j}",
+                    Result.RawMethod(
+                        (f"{i}.{j}", getattr(getattr(raw_methods, i), j))
+                    ),
+                )
+                for j in filter(
+                    lambda x: not x.startswith("_") and x[0].isupper(),
+                    dir(getattr(raw_methods, i)),
+                )
+            )
 for i in RAW_METHODS[:]:
     if "." not in i[0]:
         RAW_METHODS.remove(i)
@@ -260,9 +278,18 @@ for i in filter(lambda x: not x.startswith("_"), dir(raw_types)):
         RAW_TYPES.append((i, Result.RawType((i, getattr(raw_types, i)))))
     else:
         if "Int" not in dir(getattr(raw_types, i)):
-            for j in filter(lambda x: not x.startswith("_") and x[0].isupper(), dir(getattr(raw_types, i))):
-                RAW_TYPES.append((f"{i}.{j}", Result.RawType((f"{i}.{j}", getattr(getattr(raw_types, i), j)))))
-
+            RAW_TYPES.extend(
+                (
+                    f"{i}.{j}",
+                    Result.RawType(
+                        (f"{i}.{j}", getattr(getattr(raw_types, i), j))
+                    ),
+                )
+                for j in filter(
+                    lambda x: not x.startswith("_") and x[0].isupper(),
+                    dir(getattr(raw_types, i)),
+                )
+            )
 for i in RAW_TYPES[:]:
     if "." not in i[0]:
         RAW_TYPES.remove(i)
